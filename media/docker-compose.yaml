@@ -1,0 +1,19 @@
+version: "2.1"
+services:
+  plex:
+    image: linuxserver/plex:amd64-latest
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - UMASK_SET=022 #optional
+      - PLEX_CLAIM= #optional
+    volumes:
+      - /var/data/plex:/config
+      - /media/frosenlind/HDD2/Media/Serier:/tv
+      - /media/frosenlind/HDD2/Media/Filmer:/movies
+      - /media/frosenlind/HDD2/Media/Dokumentärer:/documentaries
+    restart: unless-stopped
+    ports:
+      - "32400:32400"
